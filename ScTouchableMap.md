@@ -1,6 +1,7 @@
 # ScTouchableMap
-ScTouchableMap improve the ability to control the user interaction with the map.
-This class inherit from the <code>SupportMapFragment</code>.
+ScTouchableMap improve the ability to control the user interaction with the Google map.
+This class inherit from the <code>SupportMapFragment</code>.<br />
+Please take a look to this [link](https://developers.google.com/maps/documentation/android-api/) for a complete explanation about the Google Maps utilization.
 
 > **DEPENDENCE**<br />
 > Need to Google Play Service.<br />

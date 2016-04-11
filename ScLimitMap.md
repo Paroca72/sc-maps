@@ -1,5 +1,5 @@
 # ScLimitMap
-Limit the boundaries of the map to a fixed area by left, top, right, bottom coordinate.<br />
+Limit the boundaries of the Google map to a fixed area by southWest and northEast couple of coordinates.<br />
 If the user move the map over this limits the class will reposition the map within.<br />
 This class inherit from the [ScTouchableMap](ScTouchableMap.md) .
 
