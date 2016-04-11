@@ -13,7 +13,32 @@ Adjust this value for a right view of the map when auto-resized.
 Set the boundaries of the map.
 
 ### Example
-For an example please take a look the demo section in the project structure.
+For an example please take a look the demo section in the project structure.<br />
+The follow example limit the map on the Italy area.
+
+**xml**
+```xml
+<!-- Map -->
+<fragment
+    android:id="@+id/mapLayout"
+    android:name="com.components.maps.demo.ScLimitMap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+
+**java**
+```java
+// Find the map fragment and cast it
+Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.mapLayout);
+ScLimitMap limitMap = (ScLimitMap) fragment;
+
+// Map constraints (ITALY)
+limitMap.setBounds(
+     new LatLng(36.031332, 6.207275),
+     new LatLng(47.234490, 19.973145)
+);
+```
+
 
 #License
 <pre>

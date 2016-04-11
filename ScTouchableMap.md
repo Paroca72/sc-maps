@@ -4,7 +4,7 @@ This class inherit from the <code>SupportMapFragment</code>.
 
 > **DEPENDENCE**<br />
 > Need to Google Play Service.<br />
-> For this demo I used the <code>8.4.0</code> version but work with also with lower.<br />
+> For this demo I used the <code>8.4.0</code> version but work also with lower.<br />
 
 #### Getter and Setter
 - **get/getSettleCheckDelay()**  -> int value, default: <code>500 milliseconds</code><br />
@@ -31,7 +31,48 @@ Called when the user move the map or zooming.
 Called when the map is settled.
 
 ### Example
-For an example please take a look the demo section in the project structure.
+For an example please take a look the demo section in the project structure.<br />
+The follow example limit the map on the Italy area.
+
+**xml**
+```xml
+<!-- Map -->
+<fragment
+    android:id="@+id/mapLayout"
+    android:name="com.components.maps.demo.ScTouchableMap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+
+**java**
+```java
+// Find the map fragment and cast it
+Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.mapLayout);
+ScTouchableMap touchableMap = (ScTouchableMap) fragment;
+
+// Listener
+touchableMap.setMapListener(new ScTouchableMap.OnMapListener() {
+    @Override
+    public void onTouched() {
+        showMessage("Map is touched!");
+    }
+
+    @Override
+    public void onReleased() {
+        showMessage("Map is released!");
+    }
+
+    @Override
+    public void onUnsettled() {
+        showMessage("Map is unsettled!");
+    }
+
+    @Override
+    public void onSettled() {
+        showMessage("Map is settled!");
+    }
+});
+```
 
 #License
 <pre>
