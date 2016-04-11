@@ -1,5 +1,6 @@
 package com.sccomponents.maps;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.google.android.gms.maps.model.CameraPosition;
  */
 public class ScTouchableMap
         extends SupportMapFragment
-        implements View.OnTouchListener, OnMapReadyCallback, GoogleMap.OnCameraChangeListener {
+        implements OnMapReadyCallback, GoogleMap.OnCameraChangeListener {
 
     /**
      * Private variables
@@ -111,9 +112,6 @@ public class ScTouchableMap
         if (!this.mTouched) {
             // Save the status
             this.mTouched = true;
-            // Check and set the status
-            this.stopCheckMoving();
-            this.onUnsettled();
 
             // Check the single listener
             if (this.mMapListener != null) {
@@ -128,8 +126,6 @@ public class ScTouchableMap
         if (this.mTouched) {
             // Save the status
             this.mTouched = false;
-            // Check the status
-            this.startCheckMoving();
 
             // Call the single listener
             if (this.mMapListener != null) {
@@ -214,15 +210,14 @@ public class ScTouchableMap
         this.mOriginalView = super.onCreateView(inflater, parent, savedInstanceState);
 
         // Create the wrapper
-        FrameLayout frameLayout = new FrameLayout(this.getActivity());
-        frameLayout.addView(this.mOriginalView);
-        frameLayout.setOnTouchListener(this);
+        Wrapper wrapper = new Wrapper(this.getActivity());
+        wrapper.addView(this.mOriginalView);
 
         // Request map
         this.getMapAsync(this);
 
         // Return the wrapper
-        return frameLayout;
+        return wrapper;
     }
 
     // When the map is ready
@@ -251,29 +246,6 @@ public class ScTouchableMap
         }
     }
 
-    // When the user interact with the map
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        // Check if not null
-        if (motionEvent != null) {
-            // Select
-            switch (motionEvent.getAction()) {
-                // Touch
-                case MotionEvent.ACTION_DOWN:
-                    // Call touched
-                    this.onTouched();
-                    break;
-
-                // Release
-                case MotionEvent.ACTION_UP:
-                    // Call released
-                    this.onReleased();
-                    break;
-            }
-        }
-        return true;
-    }
-
     // Must be overridden
     @Override
     public View getView() {
@@ -296,6 +268,34 @@ public class ScTouchableMap
 
         void onSettled();
 
+    }
+
+
+    /******************************************************************************************
+     * Touchable wrapper
+     */
+
+    private class Wrapper extends FrameLayout {
+
+        public Wrapper(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent event) {
+
+            switch (event.getAction()) {
+
+                case MotionEvent.ACTION_DOWN:
+                    ScTouchableMap.this.onTouched();
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    ScTouchableMap.this.onReleased();
+                    break;
+            }
+            return super.dispatchTouchEvent(event);
+        }
     }
 
 }
