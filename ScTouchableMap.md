@@ -2,9 +2,9 @@
 ScTouchableMap improve the ability to control the user interaction with the map.
 This class inherit from the <code>SupportMapFragment</code>.
 
-> **DEPENDENCE**
-> Need to Google Play Service.
-> For this demo I used the <code>8.4.0</code> version but work with also with lower.
+> **DEPENDENCE**<br />
+> Need to Google Play Service.<br />
+> For this demo I used the <code>8.4.0</code> version but work with also with lower.<br />
 
 #### Getter and Setter
 - **get/getSettleCheckDelay()**  -> int value, default: <code>500 milliseconds</code><br />
