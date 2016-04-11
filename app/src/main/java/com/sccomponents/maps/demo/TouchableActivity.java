@@ -48,7 +48,7 @@ public class TouchableActivity        extends AppCompatActivity {
     // Show message
     private void showMessage(String message, boolean atTop) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        if (atTop) toast.setGravity(Gravity.TOP, 0, 100);
+        if (atTop) toast.setGravity(Gravity.TOP, 0, 130);
         toast.show();
     }
 
