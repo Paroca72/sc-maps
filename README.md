@@ -23,7 +23,7 @@ android {
 ...
 dependencies {
     ...
-    compile 'com.github.paroca72:sc-maps:0.9-beta'
+    compile 'com.github.paroca72:sc-maps:1.0.0'
 }
 ```
 
