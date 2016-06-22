@@ -9,18 +9,19 @@ Limit the boundaries of the map to a fixed area by left, top, right, bottom coor
 # Usage
 
 via Gradle:
+<br />
+Add it in your root build.gradle at the end of repositories
 ```java
-android {
-    ...
-    buildTypes {
-        ...
-        repositories {
-            ...
-            maven { url "https://jitpack.io" }
-        }
-    }
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
 }
-...
+```
+
+Add the dependency
+```java
 dependencies {
     ...
     compile 'com.github.paroca72:sc-maps:1.0.0'
